@@ -75,3 +75,9 @@ ul li:hover {
 .close:hover {
     background-color: rgb(255, 153, 153);
 }
+
+.done {
+    background-color: rgb(133, 133, 133) !important;
+    color: white;
+    text-decoration: line-through
+}
