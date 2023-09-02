@@ -4,19 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>TODO List</title>
 </head>
 
 <body>
-
     <div class="pageHead">
         <h1>To-Do List</h1>
         <input type="text" id="inputTask" placeholder="Write your task here, press Enter to add . . .">
         <span id="addBTN">Add</span>
     </div>
 
+
     <ul id="tasks">
+        <div class="alert alert-success add alert" role="alert">
+            task added successfully
+        </div>
+
+        <div class="alert alert-danger delete alert" role="alert">
+            task deleted successfully
+        </div>
+
+        <div class="alert alert-success edited alert" role="alert">
+            task edited successfully
+        </div>
     </ul>
     <script src="main.js"></script>
 </body>

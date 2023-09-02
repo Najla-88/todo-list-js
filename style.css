@@ -57,6 +57,10 @@ ul li {
     position: relative;
 }
 
+ul li p {
+    display: inline;
+}
+
 ul li:nth-child(odd) {
     background: #f9f9f9;
 }
@@ -76,8 +80,25 @@ ul li:hover {
     background-color: rgb(255, 153, 153);
 }
 
+.edit {
+    position: absolute;
+    right: 43px;
+    top: 0;
+    padding: 10.5px 10.5px;
+}
+
+.edit:hover {
+    background-color: rgb(168, 247, 172);
+}
+
 .done {
     background-color: rgb(133, 133, 133) !important;
     color: white;
     text-decoration: line-through
+}
+
+.alert {
+    display: none;
+    position: relative;
+    margin-bottom: 0;
 }
