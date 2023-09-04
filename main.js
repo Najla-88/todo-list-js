@@ -30,12 +30,20 @@ function addNewTask() {
             task[i].children[1].addEventListener("click", function() {
                 var newValue = prompt("Edit task : " + this.parentElement.children[0].innerHTML)
                 console.log(newValue)
-                if (newValue !== null) {
+                if (newValue !=='') {
                     this.parentElement.children[0].innerHTML = newValue;
                     document.querySelector(".edited").style.display = 'block'
 
                     setTimeout(function() {
                         document.querySelector(".edited").style.display = 'none'
+
+                    }, 1000)
+                }
+                else{
+                   
+                    document.querySelector(".error").style.display = 'block'
+                    setTimeout(function() {
+                        document.querySelector(".error").style.display = 'none'
 
                     }, 1000)
                 }
