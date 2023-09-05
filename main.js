@@ -3,76 +3,75 @@ let task = document.querySelectorAll("li");
 function addNewTask() {
     let input = document.getElementById("inputTask").value;
     if (input !== '') {
+        // Create li element
         let taskItem = document.createElement('li');
-        let taskText = document.createElement('p');
-        taskText.innerHTML = input
 
+        // Create p element to add text in it
+        let taskText = document.createElement('p');
+        taskText.innerHTML = input;
         taskItem.appendChild(taskText);
 
+        // Create edit button
         var editSpan = document.createElement("SPAN");
         var icon = document.createTextNode("🖋️");
         editSpan.className = "edit";
         editSpan.appendChild(icon);
-
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-
         taskItem.appendChild(editSpan);
-        taskItem.appendChild(span);
 
+        // Create delete button
+        var deleteSpan = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        deleteSpan.className = "close";
+        deleteSpan.appendChild(txt);
+        taskItem.appendChild(deleteSpan);
+
+        // Append the li element to ul
         document.getElementById("tasks").appendChild(taskItem);
+
+        // Reset the input to null
         document.getElementById("inputTask").value = "";
-        task = document.querySelectorAll("li")
 
-        for (let i = 0; i < task.length; i++) {
-            task[i].children[1].addEventListener("click", function() {
-                var newValue = prompt("Edit task : " + this.parentElement.children[0].innerHTML)
-                console.log(newValue)
-                if (newValue !== null) {
-                    this.parentElement.children[0].innerHTML = newValue;
-                    document.querySelector(".edited").style.display = 'block'
+        // Update the task variable values
+        task = document.querySelectorAll("li");
 
-                    setTimeout(function() {
-                        document.querySelector(".edited").style.display = 'none'
+        // Add event listeners to dynamically added tasks
+        taskItem.querySelector('.edit').addEventListener("click", function() {
+            var newValue = prompt("Edit task: " + this.parentElement.children[0].innerHTML);
+            console.log(newValue);
+            if (newValue !== null) {
+                this.parentElement.children[0].innerHTML = newValue;
+                showNotification(".edited");
+            }
+        });
 
-                    }, 1000)
-                }
-            })
-        }
+        taskItem.querySelector('.close').addEventListener("click", function() {
+            if (confirm("Are you sure you want to delete the task?")) {
+                this.parentElement.remove();
+                showNotification(".delete");
+            }
+        });
 
-        for (let i = 0; i < task.length; i++) {
-            task[i].children[2].addEventListener("click", function() {
-                if (confirm("Are you sure you want to delete task ?")) {
-                    this.parentElement.remove();
-                    document.querySelector(".delete").style.display = 'block'
-
-                    setTimeout(function() {
-                        document.querySelector(".delete").style.display = 'none'
-
-                    }, 1000)
-                }
-            })
-        }
-
-        document.querySelector(".add").style.display = 'block'
-
-        setTimeout(function() {
-            document.querySelector(".add").style.display = 'none'
-
-        }, 1000)
-
+        showNotification(".add");
     }
 }
 
+// Function to show notifications
+function showNotification(className) {
+    document.querySelector(className).style.display = 'block';
+    setTimeout(function() {
+        document.querySelector(className).style.display = 'none';
+    }, 1000);
+}
 
+// Add new item when pressing the Add button
 document.getElementById("addBTN").addEventListener("click", addNewTask);
+
+// Add new item when pressing the Enter key
 document.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         addNewTask();
     }
-})
+});
 
 var list = document.querySelector('ul');
 
